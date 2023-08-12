@@ -1,0 +1,109 @@
+
+
+/* Centrar el contenido del documento */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.container {
+    /* Tus estilos actuales para el contenedor */
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 5px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Resto de tus estilos */
+
+
+
+.mensaje {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px; /* Alineado a la derecha */
+    width: auto; /* Ancho se ajustará al contenido */
+    max-height: 100px; /* Altura máxima */
+    font-size: 18px;
+    position: relative; /* Asegura que el botón sea posicionado dentro del div */
+    border: 2px solid #fff; /* Agrega un borde alrededor del texto */
+    padding: 10px; /* Espaciado interno para el borde */
+    margin-top: 10px; /* Espacio entre el mensaje y los botones */
+    overflow: hidden; /* Ocultar contenido que supere la altura máxima */
+    cursor: pointer;
+}
+.mensaje span {
+    display: block; /* Evita que el botón se sobreponga al mensaje */
+}
+#mensaje {
+    max-width: 100%; /* Ancho máximo */
+    height: auto; /* Altura deseada */
+    font-size: 25px; /* Aumentar el tamaño del texto del mensaje */
+    position: relative; /* Asegura que el botón sea posicionado dentro del div */
+
+
+    /* ... otros estilos ... */
+}
+
+
+.mensaje-aceptado {
+    background: linear-gradient(to right, #6CCB3F, #F9D423);
+}
+
+.mensaje-error {
+    background: linear-gradient(to right, #FF416C, #FF4B2B);
+}
+
+/* Estilo del botón de cierre */
+#mensaje-cerrar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    color: #000; /* Color del texto del botón de cierre */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#mensaje-cerrar:hover {
+    background-color: #ddd;
+    color: #333;
+    border-radius: 50%;
+}
+
+/* Estilos para los botones de acciones */
+button[type="submit"] {
+    display: block; /* Cambia a bloque para que ocupen todo el ancho disponible */
+    width: 70%; /* Ancho del 100% para que se ajusten al contenedor */
+    margin-top: 10px; /* Espacio entre los botones y el campo de entrada */
+    padding: 10px; /* Espaciado interno para que los botones sean más grandes */
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        max-width: 100%;
+    }
+}
