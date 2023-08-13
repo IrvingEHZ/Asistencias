@@ -10,3 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	mensaje.textContent = "Horario de Inicio: 12:30"
   }
 });
+
+
+

@@ -24,31 +24,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($result->num_rows > 0) {
                 header("Location: asistencias.html?mensaje=Ya%20se%20ha%20registrado%20una%20entrada%20para%20este%20número%20de%20control.&tipo=error");
-
             } else {
                 // Registrar entrada
                 $sql = "INSERT INTO registros (numero_control, hora_entrada) VALUES ('$numero_control', NOW())";
                 $conn->query($sql);
                 // Agrega un parámetro a la URL de redirección
-                header("Location: asistencias.html?mensaje=Registro%20exitoso.%20Biemvenido%20Leon.&tipo=exito");
+                header("Location: asistencias.html?mensaje=Registro%20exitoso.%20Bienvenido%20Leon.&tipo=exito");
                 exit(); // Asegura que el script se detenga después de la redirección
             }
-
         } elseif ($accion == "salida") {
             // Verificar si ya existe un registro de salida para el número de control
-            $salida_existente = "SELECT * FROM registros WHERE numero_control = '$numero_control' AND hora_entrada IS NOT NULL";
+            $salida_existente = "SELECT * FROM registros WHERE numero_control = '$numero_control' AND hora_entrada IS NOT NULL AND hora_salida IS NOT NULL";
             $result = $conn->query($salida_existente);
 
             if ($result->num_rows > 0) {
+                header("Location: asistencias.html?mensaje=Tu%20salida%20ya%20está%20registrada.&tipo=error");
+            } else {
                 // Registrar salida
                 $sql = "UPDATE registros SET hora_salida = NOW() WHERE numero_control = '$numero_control' AND hora_salida IS NULL";
                 $conn->query($sql);
-
-                header("Location: asistencias.html?mensaje=Registro%20de%20salida%20exitoso.%20Hazta%20pronto%20:3.&tipo=exito");
-            } else {
-                header("Location: asistencias.html?mensaje=No%20se%20puede%20registrar%20la%20salida.%20No%20hay%20registro%20de%20entrada%20correspondiente%20>:v&tipo=error");
-
-                echo "<div class='error-message'>No se puede registrar la salida. No hay registro de entrada correspondiente.</div>";
+                header("Location: asistencias.html?mensaje=Registro%20de%20salida%20exitoso.%20Hasta%20pronto%20:3.&tipo=exito");
             }
         }
     } catch (mysqli_sql_exception $ex) {

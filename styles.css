@@ -85,8 +85,7 @@ html, body {
 
 /* Estilos para los botones de acciones */
 button[type="submit"] {
-    display: block; /* Cambia a bloque para que ocupen todo el ancho disponible */
-    width: 70%; /* Ancho del 100% para que se ajusten al contenedor */
+    width: 50%; /* Ancho del 100% para que se ajusten al contenedor */
     margin-top: 10px; /* Espacio entre los botones y el campo de entrada */
     padding: 10px; /* Espaciado interno para que los botones sean más grandes */
     font-size: 16px;
