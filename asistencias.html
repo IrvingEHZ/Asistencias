@@ -11,7 +11,7 @@
         <table width="100%" border="0">
             <tr>
                 <td width="15%"><img src="Imagenes/WhatsApp Image 2023-08-10 at 3.58.40 PM.jpeg" width="100%" height="100%" alt=""/></td>
-                <td align="center"><h1>Jornadas 2023</h1><br>
+                <td align="center"><h1>Jornadas 2023</h1>
                     <h2 align="center">¡Bienvenidos!</h2></td>
                 <td width="15%"><img src="Imagenes/WhatsApp Image 2023-08-10 at 3.58.40 PM.jpeg" width="100%" height="100%" alt=""/></td>    
             </tr>
@@ -25,15 +25,14 @@
         <h1 align="center" id="titulo">Registro de Entrada y Salida</h1>
         <div id="conferencias"></div>
 
-
         <!-- Formulario de registro -->
         <form action="registrar.php" method="POST">
-            <p>Hola Leon(a) porfavor introduce tu numero de control para registrarte </p>
+            <p>Hola Leon(a),<br>Por favor introduce tu número de control para registrarte</p>
+
             <label for="numero_control">Numero de Control:</label>
             <br>
             <input type="text" name="numero_control" id="numero_control" required>
             <p>Hora actual: <span id="hora_actual"></span></p>
-            <br>
             <button align="right" class="boton-accion" type="submit" name="accion" value="entrada">Registrar Entrada</button>
             <br>
              <button align="right" class="boton-accion" type="submit" name="accion" value="salida">Registrar Salida</button>
@@ -43,51 +42,51 @@
     <!-- Script de JavaScript para cambiar el título dinámicamente y mostrar la hora -->
     <script>
         function actualizarTitulo() {
-    var ahora = new Date();
-    var hora = ahora.getHours();
-    var minutos = ahora.getMinutes();
-    var diaSemana = ahora.getDay(); // 0 (Domingo) a 6 (Sábado)
+        var ahora = new Date();
+        var hora = ahora.getHours();
+        var minutos = ahora.getMinutes();
+        var diaSemana = ahora.getDay(); // 0 (Domingo) a 6 (Sábado)
 
-    var titulo = document.getElementById("titulo");
+        var titulo = document.getElementById("titulo");
 
-    // Definir los nombres de las conferencias
-    var conferencias = [
-        "Conferencia 1",
-        "Conferencia 2",
-        "Conferencia 3",
-        "Conferencia 4",
-        "Conferencia 5",
-        "Conferencia 6",
-        "Conferencia 7",
-        "Conferencia 8",
-        "Conferencia 9",
-        "Conferencia 10",
-        "Conferencia 11",
-        "Conferencia 12",
-        "Conferencia 13",
-        "Conferencia 14",
-        "Conferencia 15"
-    ];
+        // Definir los nombres de las conferencias
+        var conferencias = [
+            "Conferencia 1",
+            "Conferencia 2",
+            "Conferencia 3",
+            "Conferencia 4",
+            "Conferencia 5",
+            "Conferencia 6",
+            "Conferencia 7",
+            "Conferencia 8",
+            "Conferencia 9",
+            "Conferencia 10",
+            "Conferencia 11",
+            "Conferencia 12",
+            "Conferencia 13",
+            "Conferencia 14",
+            "Conferencia 15"
+        ];
 
-    // Horarios de inicio de las conferencias (19:00 = 7:00 PM)
-    var horaInicioConferencia = 19;
-    var minutoInicioConferencia = 0;
+        // Horarios de inicio de las conferencias (9:00 = 1:30 PM)
+        var horaInicioConferencia = 9;
+        var minutoInicioConferencia = 0;
 
-    // Duración de cada conferencia en minutos (1 hr 30 min)
-    var duracionConferencia = 90;
+        // Duración de cada conferencia en minutos (1 hr 30 min)
+        var duracionConferencia = 90;
 
-    // Calcular el índice de la conferencia para el día actual (sin Sábado y Domingo)
-    var indiceConferencia = Math.floor(((hora - horaInicioConferencia) * 60 + minutos) / duracionConferencia);
+        // Calcular el índice de la conferencia para el día actual (sin Sábado y Domingo)
+        var indiceConferencia = Math.floor(((hora - horaInicioConferencia) * 60 + minutos) / duracionConferencia);
 
-    // Mostrar el título según la conferencia y el día de la semana
-    titulo.textContent = conferencias[indiceConferencia] + " - " + obtenerNombreDia(diaSemana);
-}
+        // Mostrar el título según la conferencia y el día de la semana
+        titulo.textContent = conferencias[indiceConferencia] + " - " + obtenerNombreDia(diaSemana);
+    }
 
-// Función para obtener el nombre del día de la semana
-function obtenerNombreDia(diaSemana) {
-    var nombresDias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-    return nombresDias[diaSemana];
-}
+    // Función para obtener el nombre del día de la semana
+    function obtenerNombreDia(diaSemana) {
+        var nombresDias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        return nombresDias[diaSemana];
+    }
 
 
         function mostrarHoraActual() {
@@ -104,37 +103,38 @@ function obtenerNombreDia(diaSemana) {
         }
 
         function validarHorarioRegistro() {
-            var ahora = new Date();
-            var hora = ahora.getHours();
-            var minutos = ahora.getMinutes();
+        var ahora = new Date();
+        var hora = ahora.getHours();
+        var minutos = ahora.getMinutes();
 
-            var horaInicioJornada1 = 9;   // 09:00
-            var horaFinJornada1 = 10;     // 10:30
+        var horaInicioConferencia1 = 9;    // 09:00
+        var horaFinConferencia1 = 10;      // 10:30
 
-            var horaInicioJornada2 = 11;  // 11:00
-            var horaFinJornada2 = 12;     // 12:30
+        var horaInicioConferencia2 = 10;   // 10:30
+        var horaFinConferencia2 = 12;      // 12:00
 
-            var horaInicioJornada3 = 17;  // 13:00
-            var horaFinJornada3 = 19;     // 14:30
+        var horaInicioConferencia3 = 12;   // 12:00
+        var horaFinConferencia3 = 13;      // 13:30
 
-            var botonEntrada = document.querySelector("[name='accion'][value='entrada']");
-            var botonSalida = document.querySelector("[name='accion'][value='salida']");
+        var botonEntrada = document.querySelector("[name='accion'][value='entrada']");
+        var botonSalida = document.querySelector("[name='accion'][value='salida']");
 
-            if ((hora === horaInicioJornada1 && minutos >= 0 && minutos <= 29) ||
-                (hora === horaInicioJornada2 && minutos >= 0 && minutos <= 29) ||
-                (hora === horaInicioJornada3 && minutos >= 0 && minutos <= 29)) {
-                botonEntrada.style.display = "block";
-                botonSalida.style.display = "none";
-            } else if ((hora === horaFinJornada1 && minutos >= 0 && minutos <= 29) ||
-                       (hora === horaFinJornada2 && minutos >= 0 && minutos <= 29) ||
-                       (hora === horaFinJornada3 && minutos >= 0 && minutos <= 29)) {
-                botonEntrada.style.display = "none";
-                botonSalida.style.display = "block";
-            } else {
-                botonEntrada.style.display = "none";
-                botonSalida.style.display = "none";
-            }
+        if ((hora === horaInicioConferencia1 && minutos >= 0 && minutos <= 9) ||
+            (hora === horaInicioConferencia2 && minutos >= 20 && minutos <= 29) ||
+            (hora === horaInicioConferencia3 && minutos >= 0 && minutos <= 9)) {
+            botonEntrada.style.display = "block";
+            botonSalida.style.display = "none";
+        } else if ((hora === horaFinConferencia1 && minutos >= 20 && minutos <= 29) ||
+                   (hora === horaFinConferencia2 && minutos >= 0 && minutos <= 9) ||
+                   (hora === horaFinConferencia3 && minutos >= 20 && minutos <= 29)) {
+            botonEntrada.style.display = "none";
+            botonSalida.style.display = "block";
+        } else {
+            botonEntrada.style.display = "none";
+            botonSalida.style.display = "none";
         }
+    }
+
 
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
