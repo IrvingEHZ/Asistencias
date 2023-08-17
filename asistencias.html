@@ -8,14 +8,13 @@
 <body>
     <!-- Contenedor principal -->
     <div class="container">
-        <table width="100%" border="0">
-            <tr>
-                <td width="15%"><img src="Imagenes/WhatsApp Image 2023-08-10 at 3.58.40 PM.jpeg" width="100%" height="100%" alt=""/></td>
-                <td align="center"><h1>Jornadas 2023</h1>
-                    <h2 align="center">¡Bienvenidos!</h2></td>
-                <td width="15%"><img src="Imagenes/WhatsApp Image 2023-08-10 at 3.58.40 PM.jpeg" width="100%" height="100%" alt=""/></td>    
-            </tr>
-        </table>
+        <div class="header">
+            <div class="image-container">
+        <img src="Imagenes/WhatsApp Image 2023-08-10 at 3.58.40 PM.jpeg" alt="" width="300" height="200" />
+    </div>
+            <h1>Jornadas 2023</h1>
+            <h2>¡Bienvenidos!</h2>
+        </div>
         <div id="mensaje" style="display: none;">
             <div id="mensaje-contenido"></div>
             <button id="mensaje-cerrar" class="mensaje-cerrar">x</button>
@@ -24,6 +23,10 @@
         <!-- Título dinámico que se actualizará según la hora -->
         <h1 align="center" id="titulo">Registro de Entrada y Salida</h1>
         <div id="conferencias"></div>
+        <div id="mensaje-conferencias-agotadas" style="display: none;">
+            <p>No hay más conferencias disponibles.</p>
+        </div>
+
 
         <!-- Formulario de registro -->
         <form action="registrar.php" method="POST">
@@ -33,9 +36,9 @@
             <br>
             <input type="text" name="numero_control" id="numero_control" required>
             <p>Hora actual: <span id="hora_actual"></span></p>
-            <button align="right" class="boton-accion" type="submit" name="accion" value="entrada">Registrar Entrada</button>
+            <button class="boton-accion" type="submit" name="accion" value="entrada">Registrar Entrada</button>
             <br>
-             <button align="right" class="boton-accion" type="submit" name="accion" value="salida">Registrar Salida</button>
+             <button class="boton-accion" type="submit" name="accion" value="salida">Registrar Salida</button>
         </form>
     </div>
     
@@ -48,6 +51,7 @@
         var diaSemana = ahora.getDay(); // 0 (Domingo) a 6 (Sábado)
 
         var titulo = document.getElementById("titulo");
+        var mensajeConferenciasAgotadas = document.getElementById("mensaje-conferencias-agotadas");
 
         // Definir los nombres de las conferencias
         var conferencias = [
@@ -75,12 +79,27 @@
         // Duración de cada conferencia en minutos (1 hr 30 min)
         var duracionConferencia = 90;
 
-        // Calcular el índice de la conferencia para el día actual (sin Sábado y Domingo)
         var indiceConferencia = Math.floor(((hora - horaInicioConferencia) * 60 + minutos) / duracionConferencia);
 
-        // Mostrar el título según la conferencia y el día de la semana
-        titulo.textContent = conferencias[indiceConferencia] + " - " + obtenerNombreDia(diaSemana);
+        if (diaSemana >= 1 && diaSemana <= 5) { // Lunes a Viernes
+            if (hora >= horaInicioConferencia && hora <= 13 && minutos <= 30) {
+                if (indiceConferencia < conferencias.length) {
+                    titulo.textContent = conferencias[indiceConferencia] + " - " + obtenerNombreDia(diaSemana);
+                    mensajeConferenciasAgotadas.style.display = "none";
+                } else {
+                    titulo.textContent = "No hay más conferencias disponibles";
+                    mensajeConferenciasAgotadas.style.display = "block";
+                }
+            } else {
+                titulo.textContent = "No hay conferencias en este momento";
+                mensajeConferenciasAgotadas.style.display = "none";
+            }
+        } else {
+            titulo.textContent = "No hay conferencias los fines de semana";
+            mensajeConferenciasAgotadas.style.display = "none";
+        }
     }
+
 
     // Función para obtener el nombre del día de la semana
     function obtenerNombreDia(diaSemana) {
